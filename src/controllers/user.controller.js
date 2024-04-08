@@ -66,7 +66,7 @@ const createUser = async (req, res) => {
     if (!newUser) {
       return res.status(500).json({ error: "Error 500 server" });
     }
-    //console.log(newUser);
+    console.log("SE CREO EL USER ");
     return res.json(newUser);
   } catch (error) {
     console.log(error.message);

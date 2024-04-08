@@ -4,7 +4,8 @@ const router = Router();
 //================================
 
 import controllers from "../controllers/user.controller.js";
-import { verifyToken } from "../middleware/verifyToken.middleware.js";
+import { verifyToken } from "../middleware/jwt.middleware.js";
+import { isAdmin, isModerator } from "../middleware/role.middleware.js";
 //===============================
 
 //=================================
@@ -14,12 +15,12 @@ router.get("/:id", controllers.getUserById);
 router.get("/:email", controllers.getUser);
 
 ////////////necesitamos pasarle params////////////
-router.put("/:id", [verifyToken], controllers.updateUser);
-router.delete("/:id", [verifyToken], controllers.deleteUser);
+router.put("/:id", [verifyToken, isAdmin, isModerator], controllers.updateUser);
+router.delete("/:id", [verifyToken, isAdmin], controllers.deleteUser);
 
 //////////////////////////////////
 
-router.post("/", [verifyToken], controllers.createUser);
+router.post("/", [verifyToken, isAdmin, isModerator], controllers.createUser);
 router.get("/", controllers.getUser);
 
 export default router;
