@@ -9,6 +9,7 @@ export const generateTokenJWT = async (object) => {
   const expirationDate = new Date();
   expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn);
 
+  // console.log("time: \n", Math.floor(expirationDate.getTime() / 1000));
   const token = jwt.sign({ object }, process.env.SECRET_KEY, {
     //expiresIn: "1d",
     //expiresIn: "1d",

@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import Role from "../models/role.model.js";
-import { encriptedPassword } from "../utils/hashingPassword.js";
+import { encriptedPassword } from "../utils/hashingPassword.bcryp.js";
 import { enumRole } from "../enum/role.enum.js";
 //===========================
 
@@ -27,12 +27,10 @@ const getUser = async (req, res) => {
 
       return res.json(users);
     } else {
-      const userByEmail = await User.findOne({
-        email,
-      }).pupulate("roles", "nameRole");
+      const userByEmail = await User.findOne({ email });
       if (!userByEmail) return res.status(404).json("User By Email Not found");
 
-      res.json(userByEmail);
+      return res.json(userByEmail);
     }
   } catch (error) {
     console.log(error.message);
@@ -46,10 +44,10 @@ const createUser = async (req, res) => {
   //console.log(body);
 
   try {
-    let auxUser = {
+    let auxUser = new User({
       email,
       password: await encriptedPassword(password), //,method hashing
-    };
+    });
 
     if (roles) {
       //si el rol existe busca el rol dentro del array roles y los agrega
@@ -63,12 +61,12 @@ const createUser = async (req, res) => {
       auxUser.roles = [role._id];
     }
 
-    const newUser = await new User(auxUser).save();
+    const newUser = await auxUser.save();
 
     if (!newUser) {
       return res.status(500).json({ error: "Error 500 server" });
     }
-    console.log(newUser);
+    //console.log(newUser);
     return res.json(newUser);
   } catch (error) {
     console.log(error.message);
@@ -118,9 +116,27 @@ const updateUser = async (req, res) => {
     return res.json({ error: error.message });
   }
 };
+
+//userByID
+const getUserById = async (req, res) => {
+  let { id } = req.params;
+  //////// console.log(id);
+  try {
+    let userId = await User.findById(id);
+    if (!userId) {
+      return res.status(404).json("Users Not found");
+    }
+
+    return res.json(userId);
+  } catch (error) {
+    console.log(error.message);
+    return res.json({ error: error.message });
+  }
+};
 export default {
   getUser,
   createUser,
   deleteUser,
   updateUser,
+  getUserById,
 };

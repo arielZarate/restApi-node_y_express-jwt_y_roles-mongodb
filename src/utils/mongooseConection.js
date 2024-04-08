@@ -9,7 +9,7 @@ const dbConnect = async () => {
     }
 
     //URI_DB=mongodb://localhost:27017/[nombre de proyecto]
-    db = await mongoose.connect(process.env.URI);
+    db = await mongoose.connect(process.env.URI_MONGO);
 
     console.log("DB conected with MongoDB 😎🚀🚀🚀");
     return db;

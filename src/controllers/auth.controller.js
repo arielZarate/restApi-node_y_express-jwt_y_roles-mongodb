@@ -4,8 +4,8 @@ import { enumRole } from "../enum/role.enum.js";
 import { generateTokenJWT } from "../utils/generateTokenJWT.js";
 import {
   encriptedPassword,
-  verifiedPassword,
-} from "../utils/hashingPassword.js";
+  comparePassword,
+} from "../utils/hashingPassword.bcryp.js";
 
 //TODO: metodo para registrar User por parte de los usuarios
 const signUp = async (req, res) => {
@@ -42,16 +42,17 @@ const signUp = async (req, res) => {
     const userToken = {
       id: savedUser._id,
       email: savedUser.email,
-      roles: savedUser.roles.map((i) => i.nameRole), //me guarda el nombre del rol , no el id
+      roles: savedUser.roles, //me guarda el nombre del rol , no el id
     };
 
-    const token = generateTokenJWT(userToken);
+    //await sin o si sino no lo puede generar
+    const token = await generateTokenJWT(userToken);
     // console.log(token);
     /* 
     el cliente puede optar por almacenar este token en el localStorage 
     o en una cookie si lo desea.
     */
-    return res.status(200).json({ token });
+    return res.status(200).json(token);
   } catch (error) {
     console.log(error.message);
     return res.status(500).json(error.message);
@@ -63,37 +64,37 @@ const signIn = async (req, res) => {
   const { email, password } = req.body;
 
   // Verify if exist user
-  const userByEmailFound = await User.findOne({ email }).populate(
-    "roles",
-    "nameRole"
-  );
+  const userByEmailFound = await User.findOne({ email }).populate("roles");
   if (!userByEmailFound) {
     return res.status(401).json({
-      message: "credential incorrect",
+      message:
+        "Sorry, your login credentials are incorrect. Please check your username and password and try again",
     });
   }
   // Verify password
 
-  let matchPassword = await verifiedPassword(
+  const matchPassword = await comparePassword(
     password,
     userByEmailFound.password
   );
 
   if (!matchPassword) {
     return res.status(401).json({
-      message: "credential incorrect",
+      message:
+        "Sorry, your login credentials are incorrect. Please check your username and password and try again",
     });
   }
-
+  // else {
   const userToken = {
     id: userByEmailFound._id,
     email: userByEmailFound.email,
-    roles: userByEmailFound.roles.map((i) => i.nameRole),
+    roles: userByEmailFound.roles,
   };
 
   let token = await generateTokenJWT(userToken);
-  // console.log(token);
-  return res.json(token);
+
+  return res.json({ token });
+  // }
 };
 
 export default {
