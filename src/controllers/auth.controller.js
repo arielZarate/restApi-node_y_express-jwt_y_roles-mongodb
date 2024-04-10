@@ -7,8 +7,7 @@ import {
   comparePassword,
 } from "../utils/hashingPassword.bcryp.js";
 
-
-///////////////////////////////////////////
+////////////TODO: METODO SIGNUP///////////////////////////////
 //TODO: metodo para registrar User por parte de los usuarios
 const signUp = async (req, res) => {
   try {
