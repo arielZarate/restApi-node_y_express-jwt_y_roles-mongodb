@@ -163,7 +163,7 @@ const decoded = jwt.decode(token);
 console.log(decoded);
 ```
 
-<img src="public/jwt1.png" alt="jwt_sin_firma" style="width: 500px;"/> <img src="public/jwt2.png" alt="jwt_con_firma" style="width: 500px;"/>
+<img src="public/jwt1.png" alt="jwt_sin_firma" style="width: 1000px; height: 600px;" /> <img src="public/jwt2.png" alt="jwt_con_firma" style="width: 1000px; height: 600px;" />
 
 2. **Obtener users**:
 
