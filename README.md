@@ -139,6 +139,32 @@ export const enumRole = {
 
    Estos datos lo puede usar el front end para guardarlo en su localStorage o en cookies
 
+## Decodificación de Token JWT
+
+### ¿Qué es JWT?
+
+JSON Web Token (JWT) es un estándar abierto (RFC 7519) que define un formato compacto y autocontenido para la transmisión segura de información entre partes como un objeto JSON. Está compuesto por tres partes: el encabezado, la carga útil (payload) y la firma.
+
+### Decodificación de un Token JWT en Node.js
+
+En Node.js, podemos decodificar un token JWT utilizando una librería como `jsonwebtoken`. A continuación, se muestra un ejemplo de cómo decodificar un token JWT en Node.js:
+
+```javascript
+const jwt = require("jsonwebtoken");
+
+// Token JWT a decodificar
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
+// Decodificar el token
+const decoded = jwt.decode(token);
+
+// Mostrar la carga útil decodificada
+console.log(decoded);
+```
+
+<img src="public/jwt1.png" alt="jwt_sin_firma" style="width: 500px;"/> <img src="public/jwt2.png" alt="jwt_con_firma" style="width: 500px;"/>
+
 2. **Obtener users**:
 
    ```

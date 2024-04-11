@@ -7,7 +7,7 @@ async function ExecuteServer() {
   // Crea los roles si aún no existen
   await createRoles();
   app.listen(process.env.PORT, () => {
-    console.log(`lsistening in port ${process.env.PORT}`);
+    console.log(`lsistening in port ${process.env.PORT}  `);
   });
 }
 
