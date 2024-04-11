@@ -7,7 +7,7 @@ dotenv.config(); //configuro el archivo.env
 const app = express();
 
 // Settings
-app.set("port", 3000);
+//app.set("port", 3001);
 app.set("json spaces", 4);
 app.use(cors()); //cors
 app.use(helmet());
@@ -24,7 +24,7 @@ app.use("/api", indexRouter);
 
 //ruta get bienvenida
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.json({
     message: "Welcome to my  API",
     name: "Api jwt",
@@ -32,6 +32,12 @@ app.use("/", (req, res) => {
     description: "esta es una api con node -express -jwt-mongodb",
     author: "Ariel zarate developer",
   });
+});
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  //res.status(404).json("page not found");
+  //TODO: podes redirigir a esta pagine
+  res.redirect("https://http.cat/status/404");
 });
 
 export default app;

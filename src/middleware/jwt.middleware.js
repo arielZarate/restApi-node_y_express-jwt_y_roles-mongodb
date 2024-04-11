@@ -29,7 +29,7 @@ export const verifyToken = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.error(error.message);
+    //console.error(error.message);
     return res.json({ message: "Unauthorized 😫😫" });
   }
 };

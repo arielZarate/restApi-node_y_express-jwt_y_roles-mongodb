@@ -1,0 +1,157 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "jwt-mongo-express",
+    "dateExported": "2024-04-10T23:41:53.368Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "4902e5bc-b90f-447d-b62f-c035be610663",
+            "name": "user",
+            "containerId": "",
+            "created": "2024-04-10T20:48:10.000Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "8b30f829-038a-47de-b3b3-1472d8c8557c",
+            "name": "auth",
+            "containerId": "",
+            "created": "2024-04-10T20:48:16.806Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "3bf83a72-9eec-481f-8d6b-176e743ea525",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "8b30f829-038a-47de-b3b3-1472d8c8557c",
+            "name": "sugnup",
+            "url": "http://localhost:3000/api/auth/signup/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-04-10T20:48:39.965Z",
+            "modified": "2024-04-10T22:02:02.640Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \"email\":\"javiermilei@gmail.com\",\n  \"password\":\"admin\",\n  \"roles\":[\"admin\",\"moderator\"]\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1288732b-91ba-4584-8296-5523722be22f",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "8b30f829-038a-47de-b3b3-1472d8c8557c",
+            "name": "SIGNIN",
+            "url": "http://localhost:3000/api/auth/signIn/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-04-10T21:03:44.974Z",
+            "modified": "2024-04-10T21:59:41.628Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \"email\":\"arielzarate_cba_12@hotmail.com\",\n  \"password\":\"admin\"\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8de35a17-1935-43a1-81dc-d83727525021",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "4902e5bc-b90f-447d-b62f-c035be610663",
+            "name": "GET USER",
+            "url": "http://localhost:3000/api/users",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-04-10T21:15:22.602Z",
+            "modified": "2024-04-10T21:15:35.864Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b57caffc-7b87-4640-8dc1-bc70df7ab5d8",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "4902e5bc-b90f-447d-b62f-c035be610663",
+            "name": "getById",
+            "url": "http://localhost:3000/api/users/6616fe52b9e1f30e47ba021a",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-04-10T21:16:24.067Z",
+            "modified": "2024-04-10T21:16:58.799Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "02065653-2d5c-4809-b2b5-eaf107456137",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "4902e5bc-b90f-447d-b62f-c035be610663",
+            "name": "POST USER",
+            "url": "http://localhost:3000/api/users",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-04-10T21:17:09.565Z",
+            "modified": "2024-04-10T21:51:38.052Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsiaWQiOiI2NjE3MDliMDVmMGQzN2M5MjMzOGM0ZjUiLCJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicm9sZXMiOlsiNjYxNmU3YWFiZWQzNzgxZjU4MjViMzIzIl19LCJpYXQiOjE3MTI3ODU4NDAsImV4cCI6MTcxMjc4Njc0MH0.Pyk3cY1u40kjAgabIXShGRKiT_ewPcaJDiPb-mrDAco"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \"email\":\"ariel12@gmail.com\",\n  \"password\":\"admin\"\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f1b9cd97-5679-4762-ab1b-86713876adb1",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "4902e5bc-b90f-447d-b62f-c035be610663",
+            "name": "put user",
+            "url": "http://localhost:3000/api/users/6616fe52b9e1f30e47ba021a",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-04-10T21:42:53.060Z",
+            "modified": "2024-04-10T21:45:09.362Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsiaWQiOiI2NjE2ZmU1MmI5ZTFmMzBlNDdiYTAyMWEiLCJlbWFpbCI6ImFyaWVsIiwicm9sZXMiOlt7Il9pZCI6IjY2MTZlN2FhYmVkMzc4MWY1ODI1YjMyOSIsIm5hbWVSb2xlIjoiYWRtaW4iLCJjcmVhdGVkQXQiOiIyMDI0LTA0LTEwVDE5OjI1OjMwLjM1MloiLCJ1cGRhdGVkQXQiOiIyMDI0LTA0LTEwVDE5OjI1OjMwLjM1MloiLCJfX3YiOjB9XX0sImlhdCI6MTcxMjc4NTE1OSwiZXhwIjoxNzEyNzg2MDU5fQ.JysPkJ70Y_2NaVVqMOoJpK2MCHHwz_TOThDhdCAJwLM"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \"email\":\"arielzarate_cba_12@hotmail.com\",\n  \"password\":\"admin\"\n \n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c596c9be-51c8-4cf1-9287-3119dcf64c6b",
+            "colId": "81886692-add8-498c-980a-76edddc69e30",
+            "containerId": "4902e5bc-b90f-447d-b62f-c035be610663",
+            "name": "delete user",
+            "url": "http://localhost:3000/api/users/66170745b290eefeedde8ee7",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2024-04-10T21:52:27.145Z",
+            "modified": "2024-04-10T22:07:11.501Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsiaWQiOiI2NjE3MGQ0ODZlYTNhZjkxNzlmMWFmYjUiLCJlbWFpbCI6Imphdmllcm1pbGVpQGdtYWlsLmNvbSIsInJvbGVzIjpbIjY2MTZlN2FhYmVkMzc4MWY1ODI1YjMyOSIsIjY2MTZlN2FhYmVkMzc4MWY1ODI1YjMyNyJdfSwiaWF0IjoxNzEyNzg2NzYwLCJleHAiOjE3MTI3ODc2NjB9.uGMh2vZRKrKLMJAtes_reOi4NINKHTWY7K8QP_a220I"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

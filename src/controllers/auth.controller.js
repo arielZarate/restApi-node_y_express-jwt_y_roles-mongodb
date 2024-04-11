@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import Role from "../models/role.model.js";
 import { enumRole } from "../enum/role.enum.js";
 import { generateTokenJWT } from "../utils/generateTokenJWT.js";
+
 import {
   encriptedPassword,
   comparePassword,
@@ -13,19 +14,19 @@ const signUp = async (req, res) => {
   try {
     const { email, password, roles } = req.body;
 
-    //TODO:atencion puede ser que roles venga vacio si el usuario es"user"
+    //TODO: atencion puede ser que roles venga vacio si el usuario es"user"
 
     const newUser = new User({
       email,
       password: await encriptedPassword(password),
     });
 
-    // checking for roles
+    // console.log("signup", roles);
+
     if (roles) {
       //si el rol existe busca el rol dentro del array roles y los agrega
       //TODO: podria incluir mas de un rol => admin y moderator
       const foundRoles = await Role.find({ nameRole: { $in: roles } });
-      //agrego roles al newUser
       newUser.roles = foundRoles.map((role) => role._id);
     } else {
       //si el role no existe le agrega un rol de tipo user
@@ -33,25 +34,20 @@ const signUp = async (req, res) => {
       //agrego roles al newUser
       newUser.roles = [role._id];
     }
-
-    // guardamos el nnuevo user object
     const savedUser = await newUser.save();
 
-    ////////////////generate Token/////////////////
-
-    //============new user=======================
     const userToken = {
       id: savedUser._id,
       email: savedUser.email,
-      roles: savedUser.roles, //me guarda el nombre del rol , no el id
+      roles: savedUser.roles,
     };
-
-    //await sin o si sino no lo puede generar
+    ////////////////generate Token/////////////////
     const token = await generateTokenJWT(userToken);
-    // console.log(token);
-    /* 
-    el cliente puede optar por almacenar este token en el localStorage 
+
+    /*  puede optar por almacenar este token en el localStorage 
     o en una cookie si lo desea.
+
+    TODO: en mi logica luego del signup mando al user a loguearse
     */
     return res.status(200).json(token);
   } catch (error) {
@@ -95,7 +91,8 @@ const signIn = async (req, res) => {
   let token = await generateTokenJWT(userToken);
 
   return res.json({ token });
-  // }
+  // TODO: en mi logica una ves autorizado puede ir al home y ver los que sea
+  //TODO: suelo pedir login en caso de que sea necesario realizar operaciones con trasacciones
 };
 
 export default {

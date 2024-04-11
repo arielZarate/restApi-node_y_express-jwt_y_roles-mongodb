@@ -28,10 +28,10 @@ export const checkExistingUser = async (req, res, next) => {
 const ROLES = [enumRole.ADMIN, enumRole.MODERATOR, enumRole.USER];
 
 export const checkExistingRole = (req, res, next) => {
-  const arrayRoles = req.body.roles.find();
+  const arrayRoles = req.body.roles; // create array
+  //console.log("checkExistingRole", arrayRoles);
 
-  if (!req.body.roles)
-    return res.status(400).json({ message: "roles not found" });
+  if (!arrayRoles) return res.status(400).json({ message: "roles not found" });
 
   for (let i = 0; i < arrayRoles.length; i++) {
     if (!ROLES.includes(arrayRoles[i])) {

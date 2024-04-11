@@ -12,6 +12,7 @@ router.post("/signup", [checkExistingRole], controllers.signUp);
 
 // Ruta para iniciar sesión de un usuario existente
 
-router.post("/signin", [checkExistingRole], controllers.signIn);
+//no le valido si existe el rol porque ya valido el email y sino es valido no podra ingresar directamente
+router.post("/signin", controllers.signIn);
 
 export default router;

@@ -41,3 +41,30 @@ export const isAdmin = async (req, res, next) => {
     return res.status(500).send({ message: error });
   }
 };
+
+//esta funcion es mas generica valida mas de un role , los roles deben ser pasados por parametros
+
+export const hasRoles = (...roles) => {
+  return async (req, res, next) => {
+    try {
+      const user = await User.findById(req.userId);
+      const userRoles = await Role.find({ _id: { $in: user.roles } });
+
+      // Verifica si el usuario tiene al menos uno de los roles especificados
+      for (let i = 0; i < userRoles.length; i++) {
+        if (roles.includes(userRoles[i].nameRole)) {
+          next(); // Si el usuario tiene uno de los roles especificados, permite el acceso
+          return;
+        }
+      }
+
+      // Si el usuario no tiene ninguno de los roles especificados, devuelve un error
+      return res
+        .status(403)
+        .json({ message: "Require Admin or Moderator Role!" });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ message: error });
+    }
+  };
+};

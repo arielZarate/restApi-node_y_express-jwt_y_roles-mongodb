@@ -4,12 +4,10 @@ import { encriptedPassword } from "../utils/hashingPassword.bcryp.js";
 import { enumRole } from "../enum/role.enum.js";
 //===========================
 
-//============conttroller============7
+//============controller============
 
-//========================================
 //TODO: esta ruta getUser trae todos y ademas
 //por query => http://localhost:3000/api/users?email=arieltecnico@gmail.com
-//========================================
 //========================================
 
 const getUser = async (req, res) => {
@@ -66,7 +64,7 @@ const createUser = async (req, res) => {
     if (!newUser) {
       return res.status(500).json({ error: "Error 500 server" });
     }
-    console.log("SE CREO EL USER ");
+
     return res.json(newUser);
   } catch (error) {
     console.log(error.message);
@@ -133,6 +131,7 @@ const getUserById = async (req, res) => {
     return res.json({ error: error.message });
   }
 };
+
 export default {
   getUser,
   createUser,

@@ -8,7 +8,7 @@ export const generateTokenJWT = async (object) => {
     //expiresIn: "1d",
     //expiresIn: 3600, //1 hora enmn sg
 
-    expiresIn: 4, //1 hora
+    expiresIn: 900, // TODO:  900sg son 15 min, seria un token de banco por el time
   });
 
   if (!token) {

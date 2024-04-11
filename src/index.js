@@ -6,8 +6,8 @@ async function ExecuteServer() {
   await dbConnect();
   // Crea los roles si aún no existen
   await createRoles();
-  app.listen(3000, () => {
-    console.log("server listening in port 3000");
+  app.listen(process.env.PORT, () => {
+    console.log(`lsistening in port ${process.env.PORT}`);
   });
 }
 
